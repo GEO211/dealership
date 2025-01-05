@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Luxury Auto Hub</title>
+    <link rel="stylesheet" href="walkers.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .auth-box {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 400px;
+            margin: 100px auto;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .auth-logo {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-form input {
+            width: calc(100% - 55px);  /* Adjust for icon space */
+            padding: 15px 15px 15px 40px;
+        }
+
+        .auth-button {
+            margin-top: 10px;
+            padding: 15px;
+        }
+
+        .auth-links {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body class="auth-page">
+    <div class="auth-box">
+        <div class="auth-header">
+            <img src="https://i.imgur.com/8bZWiNF.png" alt="Luxury Auto Hub" class="auth-logo">
+            <h2>Create Account</h2>
+            <p>Join Luxury Auto Hub today</p>
+        </div>
+
+        <div id="signup-error" class="error-message"></div>
+
+        <form class="auth-form" id="signupForm">
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+            </div>
+            <button type="submit" class="auth-button">
+                <i class="fas fa-user-plus"></i> Sign Up
+            </button>
+        </form>
+
+        <div class="auth-links">
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="firebaseauth.js"></script>
+</body>
+</html> 

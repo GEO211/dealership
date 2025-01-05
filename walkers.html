@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Luxury Auto Hub - Premium Cars</title>
+    <link rel="stylesheet" href="walkers.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+<body>
+    <script>
+        // Immediate auth check
+        (function() {
+            const auth = firebase.auth();
+            auth.onAuthStateChanged(function(user) {
+                if (!user) {
+                    const isGuestMode = sessionStorage.getItem('guestMode') === 'true';
+                    if (!isGuestMode) {
+                        window.location.href = 'login.html';
+                    }
+                }
+            });
+        })();
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="logo.png" alt="Luxury Auto Hub" class="logo">
+        </div>
+        <ul>
+            <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#inventory"><i class="fas fa-car"></i> Inventory</a></li>
+            <li><a href="#services"><i class="fas fa-tools"></i> Services</a></li>
+            <li><a href="#financing"><i class="fas fa-dollar-sign"></i> Financing</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="profile-menu" id="profileMenu">
+                <div class="profile-trigger">
+                    <img src="profile-placeholder.jpg" alt="Profile" id="profileImage" class="profile-img circular">
+                    <div class="profile-info-preview">
+                        <span class="profile-name" id="profileName">Loading...</span>
+                        <span class="profile-email" id="profileEmail">Loading...</span>
+                    </div>
+                </div>
+                <div class="profile-dropdown">
+                    <div class="profile-header" id="profileHeader">
+                        <div class="profile-info">
+                            <img src="profile-placeholder.jpg" alt="Profile" class="profile-img-large" id="profileImageLarge">
+                            <div class="profile-text">
+                                <h4 id="headerProfileName">Loading...</h4>
+                                <p id="headerProfileEmail">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-links">
+                        <div class="saved-cars-section">
+                            <h5>Saved Cars</h5>
+                            <span class="saved-count" id="savedCount">0</span>
+                            <div class="saved-cars-preview" id="savedCarsPreview">
+                                <!-- Saved cars will be listed here -->
+                            </div>
+                        </div>
+                        <a href="#profile" class="profile-link">
+                            <i class="fas fa-user"></i> Manage Profile
+                        </a>
+                        <button onclick="window.authProtection.logout()" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Car</h1>
+            <p>Explore our premium selection of luxury vehicles</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search by make, model, or year">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="featured-cars" id="inventory">
+        <h2>Featured Vehicles</h2>
+        <div class="car-grid">
+            <!-- Car cards will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-car-alt"></i>
+                <h3>New Cars</h3>
+                <p>Latest models with full warranty</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Maintenance</h3>
+                <p>Professional service & repair</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-money-check-alt"></i>
+                <h3>Financing</h3>
+                <p>Flexible payment options</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-exchange-alt"></i>
+                <h3>Trade-In</h3>
+                <p>Best value for your car</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Auto Drive, City, State</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@luxuryautohub.com</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Luxury Auto Hub - Your trusted partner in finding premium vehicles.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#inventory">Inventory</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#financing">Financing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Luxury Auto Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
+    <script src="firebaseauth.js"></script>
+    <script src="cars.js"></script>
+
+    <script>
+        // Initialize auth state check
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is authenticated
+            firebase.auth().onAuthStateChanged(function(user) {
+                const isGuestMode = sessionStorage.getItem('guestMode') === 'true';
+                if (!user && !isGuestMode) {
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+    </script>
+
+    <script>
+    // Profile and Auth Management
+    class ProfileManager {
+        constructor() {
+            this.auth = firebase.auth();
+            this.db = firebase.firestore();
+            this.setupAuthListener();
+            this.savedCars = [];
+        }
+
+        setupAuthListener() {
+            this.auth.onAuthStateChanged(async user => {
+                if (user) {
+                    await this.updateProfileUI(user);
+                    await this.fetchUserData(user.uid);
+                } else {
+                    const isGuestMode = sessionStorage.getItem('guestMode') === 'true';
+                    if (!isGuestMode) {
+                        window.location.href = 'login.html';
+                    }
+                }
+            });
+        }
+
+        async fetchUserData(userId) {
+            try {
+                const userDoc = await this.db.collection('users').doc(userId).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    this.savedCars = userData.savedCars || [];
+                    await this.updateUIWithUserData(userData);
+                } else {
+                    // Create user document if it doesn't exist
+                    await this.db.collection('users').doc(userId).set({
+                        savedCars: [],
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                this.showError('Error loading profile data');
+            }
+        }
+
+        async updateProfileUI(user) {
+            // Update all profile images
+            const profileImages = ['profileImage', 'profileImageLarge'];
+            profileImages.forEach(id => {
+                const imgElement = document.getElementById(id);
+                if (imgElement) {
+                    imgElement.src = user.photoURL || 'profile-placeholder.jpg';
+                    imgElement.onerror = () => {
+                        imgElement.src = 'profile-placeholder.jpg';
+                    };
+                }
+            });
+
+            // Update all name displays
+            const nameElements = ['profileName', 'headerProfileName'];
+            nameElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = user.displayName || 'User';
+                }
+            });
+
+            // Update all email displays
+            const emailElements = ['profileEmail', 'headerProfileEmail'];
+            emailElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = user.email;
+                }
+            });
+        }
+
+        async updateUIWithUserData(userData) {
+            const savedCount = document.getElementById('savedCount');
+            const savedCarsPreview = document.getElementById('savedCarsPreview');
+            
+            if (savedCount) {
+                savedCount.textContent = this.savedCars.length;
+            }
+
+            if (savedCarsPreview && this.savedCars.length > 0) {
+                savedCarsPreview.innerHTML = await this.generateSavedCarsHTML();
+            } else if (savedCarsPreview) {
+                savedCarsPreview.innerHTML = '<p class="no-saved-cars">No saved cars yet</p>';
+            }
+        }
+
+        async generateSavedCarsHTML() {
+            try {
+                const carsHTML = await Promise.all(this.savedCars.slice(0, 3).map(async carId => {
+                    const carDoc = await this.db.collection('cars').doc(carId).get();
+                    const car = carDoc.data();
+                    return `
+                        <div class="saved-car-item">
+                            <img src="${car.image}" alt="${car.make} ${car.model}">
+                            <div class="saved-car-info">
+                                <span>${car.make} ${car.model}</span>
+                                <span class="saved-car-price">$${car.price.toLocaleString()}</span>
+                            </div>
+                        </div>
+                    `;
+                }));
+                
+                return carsHTML.join('') + (
+                    this.savedCars.length > 3 ? 
+                    `<a href="#saved" class="view-all-saved">View all ${this.savedCars.length} saved cars</a>` : 
+                    ''
+                );
+            } catch (error) {
+                console.error('Error generating saved cars HTML:', error);
+                return '<p class="error-message">Error loading saved cars</p>';
+            }
+        }
+
+        showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-toast';
+            errorDiv.textContent = message;
+            document.body.appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 3000);
+        }
+    }
+
+    // Logout Handler
+    async function handleLogout() {
+        try {
+            document.body.classList.add('logging-out');
+            
+            // Clear any guest mode flag
+            sessionStorage.removeItem('guestMode');
+            localStorage.removeItem('savedCars');
+            
+            // Sign out from Firebase
+            await firebase.auth().signOut();
+            
+            // Redirect to login page
+            window.location.href = 'login.html';
+        } catch (error) {
+            console.error('Error during logout:', error);
+            document.body.classList.remove('logging-out');
+            alert('Error during logout. Please try again.');
+        }
+    }
+
+    // Initialize Profile Manager
+    document.addEventListener('DOMContentLoaded', () => {
+        window.profileManager = new ProfileManager();
+    });
+    </script>
+</body>
+</html>
