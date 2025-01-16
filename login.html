@@ -127,7 +127,7 @@
         // Check if user is already logged in
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                window.location.href = 'walkers.html';
+                window.location.href = 'index.html';
             }
         });
 
@@ -139,7 +139,7 @@
             
             try {
                 await firebase.auth().signInWithEmailAndPassword(email, password);
-                window.location.href = 'walkers.html';
+                window.location.href = 'index.html';
             } catch (error) {
                 const errorElement = document.getElementById('error-message');
                 errorElement.textContent = error.message;
@@ -152,7 +152,7 @@
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
                 await firebase.auth().signInWithPopup(provider);
-                window.location.href = 'walkers.html';
+                window.location.href = 'index.html';
             } catch (error) {
                 const errorElement = document.getElementById('error-message');
                 errorElement.textContent = error.message;
@@ -165,7 +165,7 @@
             try {
                 const provider = new firebase.auth.FacebookAuthProvider();
                 await firebase.auth().signInWithPopup(provider);
-                window.location.href = 'walkers.html';
+                window.location.href = 'index.html';
             } catch (error) {
                 const errorElement = document.getElementById('error-message');
                 errorElement.textContent = error.message;
@@ -176,7 +176,7 @@
         // Guest Login
         function handleGuestLogin() {
             sessionStorage.setItem('guestMode', 'true');
-            window.location.href = 'walkers.html';
+            window.location.href = 'index.html';
         }
     </script>
 </body>

@@ -10,7 +10,7 @@ class AuthProtection {
             if (user) {
                 // User is signed in
                 if (window.location.pathname.includes('login.html')) {
-                    window.location.href = 'walkers.html';
+                    window.location.href = 'index.html';
                 }
             } else {
                 // User is signed out
