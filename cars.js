@@ -6,7 +6,7 @@ const cars = [
         model: 'S-Class',
         year: 2024,
         price: 110000,
-        image: 'https://images.unsplash.com/photo-1622194993374-56c0a8e6f9d9?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images7.alphacoders.com/950/950386.jpg',
         description: 'Luxury sedan with advanced features',
         specs: {
             engine: '4.0L V8 Biturbo',
@@ -30,8 +30,8 @@ const cars = [
     },
     {
         id: 3,
-        make: 'Audi',
-        model: 'A8',
+        make: 'BMW',
+        model: 'M2',
         year: 2024,
         price: 89000,
         image: 'https://images.unsplash.com/photo-1614026480209-cd9934144671?q=80&w=1000&auto=format&fit=crop',
@@ -58,8 +58,8 @@ const cars = [
     },
     {
         id: 5,
-        make: 'Lexus',
-        model: 'LS 500',
+        make: 'Bugatti',
+        model: '',
         year: 2024,
         price: 78000,
         image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1000&auto=format&fit=crop',
@@ -72,8 +72,8 @@ const cars = [
     },
     {
         id: 6,
-        make: 'Bentley',
-        model: 'Flying Spur',
+        make: 'Porsche',
+        model: '',
         year: 2024,
         price: 215000,
         image: 'https://images.unsplash.com/photo-1580274455191-1c62238fa333?q=80&w=1000&auto=format&fit=crop',
